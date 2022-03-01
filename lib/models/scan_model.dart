@@ -6,8 +6,8 @@ import 'package:meta/meta.dart';
 
 class ScanModel {
   ScanModel({
-    this.id,
-    this.tipo,
+    required this.id,
+    required this.tipo,
     required this.valor,
   }) {
     if (this.tipo.contains('http')) {

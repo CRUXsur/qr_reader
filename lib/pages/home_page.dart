@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:qr_reader/pages/mapas_page.dart';
 import 'package:qr_reader/pages/direcciones_page.dart';
 
+import 'package:qr_reader/providers/db_provider.dart';
 import 'package:qr_reader/providers/ui_provider.dart';
 
 import 'package:qr_reader/widgets/custom_navigatorbar.dart';
@@ -40,6 +41,10 @@ class _HomePageBody extends StatelessWidget {
     final uiProvider = Provider.of<UiProvider>(context);
     //* Cambiar para mostrar la pagina respectiva
     final currentIndex = uiProvider.selectedMenuOpt;
+
+    // TODO: temporal leer la base de datos
+
+    DBProvider.db.database;
 
     switch (currentIndex) {
       case 0:
