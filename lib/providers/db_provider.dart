@@ -7,6 +7,9 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
+import 'package:qr_reader/models/scan_model.dart';
+export 'package:qr_reader/models/scan_model.dart';
+
 class DBProvider {
   //static property
   static Database? _database;
@@ -41,5 +44,29 @@ class DBProvider {
           )
       ''');
     });
+  }
+
+  Future<int?> nuevoScanRaw(ScanModel nuevoScan) async {
+    final id = nuevoScan.id;
+    final tipo = nuevoScan.tipo;
+    final valor = nuevoScan.valor;
+
+    //verificar la base de datos
+    final db = await database;
+
+    final res = await db?.rawInsert('''
+      INSERT INTO Scans( id, tipo, valor )
+        VALUES( $id, '$tipo', '$valor' )
+    ''');
+    return res;
+  }
+
+  Future<int?> nuevoScan(ScanModel nuevoScan) async {
+    //espero que la base de datos este lista
+    final db = await database;
+    final res = await db?.insert('Scans', nuevoScan.toJson());
+    print(res);
+    // res, es el ID del ultimo registro insertado;
+    return res;
   }
 }
