@@ -43,8 +43,10 @@ class _HomePageBody extends StatelessWidget {
     final currentIndex = uiProvider.selectedMenuOpt;
 
     // TODO: temporal leer la base de datos
-    final tempScan = new ScanModel(valor: 'http://google.com');
-    DBProvider.db.nuevoScan(tempScan);
+    //  final tempScan = new ScanModel(valor: 'http://google.com');
+    //DBProvider.db.nuevoScan(tempScan);
+    //  DBProvider.db.getScanById(8).then((scan) => print(scan?.valor));
+    //DBProvider.db.getTodosLosScans().then(print);
 
     switch (currentIndex) {
       case 0:
