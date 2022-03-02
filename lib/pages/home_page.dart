@@ -23,7 +23,10 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.delete_forever),
-            onPressed: () {},
+            onPressed: () {
+              Provider.of<ScanListProvider>(context, listen: false)
+                  .borrarTodos();
+            },
           )
         ],
       ),
@@ -51,15 +54,15 @@ class _HomePageBody extends StatelessWidget {
     //DBProvider.db.deleteAllScans().then(print);
 
     //Usar el ScanListProvider
-    final scnaListProvider =
+    final scanListProvider =
         Provider.of<ScanListProvider>(context, listen: false);
 
     switch (currentIndex) {
       case 0:
-        scnaListProvider.cargarScansPorTipo('geo');
+        scanListProvider.cargarScansPorTipo('geo');
         return MapasPage();
       case 1:
-        scnaListProvider.cargarScansPorTipo('http');
+        scanListProvider.cargarScansPorTipo('http');
         return DireccionesPage();
       default:
         return MapasPage();
