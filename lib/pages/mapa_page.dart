@@ -29,6 +29,14 @@ class _MapaPageState extends State<MapaPage> {
       tilt: 50, //grado de inclinacion
     );
 
+    //Marcadores
+    Set<Marker> markers = new Set<Marker>();
+    markers.add(
+      Marker(
+        markerId: const MarkerId('geo-location'),
+        position: scan.getLatLng(),
+      ),
+    );
     return Scaffold(
       appBar: AppBar(
         title: const Text('Mapa'),
@@ -37,6 +45,7 @@ class _MapaPageState extends State<MapaPage> {
         myLocationButtonEnabled: false,
         //* tipo de mapa satelital(.hybrid), etc....
         mapType: MapType.normal,
+        markers: markers,
         initialCameraPosition: puntoInicial,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
