@@ -40,6 +40,23 @@ class _MapaPageState extends State<MapaPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Mapa'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.location_disabled),
+            onPressed: () async {
+              final GoogleMapController controller = await _controller.future;
+              controller.animateCamera(
+                CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                    target: scan.getLatLng(),
+                    zoom: 17.5,
+                    tilt: 50,
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: GoogleMap(
         myLocationButtonEnabled: false,
@@ -49,6 +66,12 @@ class _MapaPageState extends State<MapaPage> {
         initialCameraPosition: puntoInicial,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.layers),
+        onPressed: () {
+          //
         },
       ),
     );
